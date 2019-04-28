@@ -1,28 +1,39 @@
 import {
 parsetransData
+// parsebasicData
 } from './utils';
 
 import {csv, nest} from 'd3';
 
+// //promise
+// const basicDataPromise = csv('./data/table_1.csv', parsebasicData)
+//       .then(data => data.reduce((acc,v) => acc.concat(v), []));
 
-//Promise 
-const transDataPromise = csv('./data/table_1.csv', parsetransData);
-
-
+Promise 
+const transDataPromise = csv('./data/table_1.csv', parsetransData)
+  .then(data => data.reduce((acc,v) => acc.concat(v), []));
+  console.log(transDataPromise);
+  
 const dataCombined = transDataPromise.then(transData => {
   
-  const dataEdited = transData.map(d => {
-    return d;
+  const dataEdited = transData.map(data => {
+    return data;
+   
   })
+ 
 
   return dataEdited;
 });
 
 
+
+
 export {
   transDataPromise,
   dataCombined
+
   }
+
 
 
 

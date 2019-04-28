@@ -1,5 +1,13 @@
 import * as d3 from 'd3';
 
+//parsebasicData
+// function parsebasicData(d){
+//   return {
+//     geoid_2: +d.geoid_2,
+//     geography: d.geo_display,
+//     total_population: +d.HC01_EST_VC01
+//   }
+// }
 //Utility functions for parsing transData
 function parsetransData(d){
   

@@ -14,7 +14,7 @@ import barChart from './viewModules/barChart';
 //global variables
 let countyCode = 1001;
 
-console.log(dataCombined);
+
 //global dispatch object
 const globalDispatch = d3.dispatch("change:county"); //the dispatch event name is "change:country"
 
@@ -44,8 +44,15 @@ dataCombined.then(() =>
     "Autauga County, Alabama"
   ));
 
-//remember to make a new map for dataCode, and also has to define dataCode later
-dataCombined.then(dataCode => renderMenu(dataCode)); 
+//be careful about the countryMenuCode. Right now is undefined.
+dataCombined.then((countyMenuCode) => {
+  function geoDisplay (d){
+    
+    const geoDisplay = array.from(d.geoDisplay);
+    countyMenuCode = geoDisplay;
+    return countyMenuCode;
+  }
+  return renderMenu(countyMenuCode)}); 
 
 
 /*
@@ -85,8 +92,9 @@ function renderBarChart(data) {
           });   
 }
 
-function renderMenu(countyCode){
-  const countyList = Array.from(countyCode.entries());
+function renderMenu(countyMenuCode){
+  const countyList = Array.from(countyMenuCode.entries());
+ 
 
   let menu = d3.select('.nav')
                .selectAll('select')
