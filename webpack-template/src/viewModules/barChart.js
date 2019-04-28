@@ -3,10 +3,6 @@ import {
     dataCombined
 } from '../data';
 
-
-
-
-
 //a barchart about age composition by county
 function barChart(){
     let maxY;
@@ -52,6 +48,18 @@ function barChart(){
           
 
     }
+
+    exportFunction.maxY = function(_){
+		maxY = _;
+		return this;
+	}
+
+	exportFunction.onChangeCounty = function(callback){
+		//event ==> "county:change"
+		//callback ==> arg => console.log(arg)
+		countyChangeCallback = callback; //arg => console.log(arg)
+		return this;
+	}
 
     return exportFunction;
 
