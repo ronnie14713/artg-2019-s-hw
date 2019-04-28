@@ -86,7 +86,7 @@ function renderBarChart(data) {
 }
 
 function renderMenu(countyCode){
-  const countyList = Array.from(countyCode.entriese());
+  const countyList = Array.from(countyCode.entries());
 
   let menu = d3.select('.nav')
                .selectAll('select')
@@ -99,7 +99,7 @@ function renderMenu(countyCode){
 
 
   menu.selectAll('option')
-      .data(countylist)
+      .data(countyList)
       .enter()
       .append('option')
       .attr('value', d => d[1])
