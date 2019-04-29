@@ -7,6 +7,10 @@ import {
   dataCombined  
 } from './data';
 
+import {
+  groupByEarnings
+} from './utils';
+
 //modules
 import BarChart from './viewModules/barChart';
 
@@ -29,9 +33,7 @@ globalDispatch.on("change:county", (code, displayName) => {
     const filteredData = data.filter(d => d.geoid_2 === countyCode);
     console.log(filteredData);
   
-    
-
-    renderBarChart(filteredData); //will set up renderBarChart() later
+    renderBarChart(groupByEarnings(filteredData)); //will set up renderBarChart() later
   });
 });
 
@@ -72,7 +74,8 @@ function renderBarChart(data) {
 
     const charts = d3.select('.bar_chart')
                      .selectAll('.chart')
-                     .data(data, d => d.key); 
+                     .data(data, d => d[0]);
+                      
     const chartsEnter = charts.enter()
                               .append('div')
                               .attr('class', 'chart');

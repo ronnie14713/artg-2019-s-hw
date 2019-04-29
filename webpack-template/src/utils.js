@@ -106,6 +106,17 @@ function parsetransData(d){
   }
 }
 
+function groupByEarnings(data) {
+  const earningsData = d3.nest()
+                         .key(d => d.geography)
+                         .key(d => d.earnings_group)
+                         .entries(data);
+  console.log(groupByEarnings);
+  return groupByEarnings;
+
+}
+
   export {
-      parsetransData
+      parsetransData,
+      groupByEarnings
   }

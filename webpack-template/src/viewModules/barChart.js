@@ -25,15 +25,14 @@ function BarChart(){
 
 
         //append svg
-        const svg = d3.select('#bar_chart')
+        const svg = d3.select(rootDOM)
+                      .classed('.bar_chart', true)
                       .append('svg')
                       .attr('width', W)
                       .attr('height', H);
 
-        svg.selectAll('rect')
-           .data(data, function(d){
-               return 
-           })
+        svg.selectAll('rect');
+           
                       
 
      
