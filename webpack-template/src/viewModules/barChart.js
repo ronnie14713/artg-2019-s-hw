@@ -6,6 +6,7 @@ import {
 //a barchart about age composition by county
 function BarChart(){
     let maxY;
+    let countyChangeCallback;
     
 
     function exportFunction(rootDOM, data){

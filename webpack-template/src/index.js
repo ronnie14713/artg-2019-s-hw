@@ -66,9 +66,9 @@ function renderBarChart(data) {
 
   const barChart = BarChart() //really careful about the uppercase and lowercase here
     .maxY(maxValue)
-    // .onChangeCounty(
-    //   county => globalDispatch.call('change:county', null, )
-    // )
+    .onChangeCounty(
+      county => globalDispatch.call('change:county', null, county)
+    );
 
     const charts = d3.select('.bar_chart')
                      .selectAll('.chart')
