@@ -87,15 +87,17 @@ function renderBarChart(data) {
 
 function renderMenu(countyMenuCode){
   dataCombined.then(data => {
-    console.log(data);
-    const countyMenuCode = data.map(d => [d.geoid_2, d.geography]);
-    console.log(countyMenuCode);
+    // console.log(data);
+    const countyMenuCode = data.map(d => d.geography);
+    // console.log(countyMenuCode[0]);
+    const countyList = Array.from(countyMenuCode.entries());
+    console.log(countyList);
   
 
   
   let menu = d3.select('.nav')
                .selectAll('select')
-               .data([0]);
+               .data([1]);
 
   menu = menu.enter()
              .append('select')
@@ -108,7 +110,7 @@ function renderMenu(countyMenuCode){
       .enter()
       .append('option')
       .attr('value', d => d[1])
-      .html(d => d[0]);
+      .html(d => d[1]);
       
   menu.on('change', () => {
     const code = this.value;
