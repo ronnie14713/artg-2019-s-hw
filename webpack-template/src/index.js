@@ -8,7 +8,7 @@ import {
 } from './data';
 
 //modules
-import barChart from './viewModules/barChart';
+import BarChart from './viewModules/barChart';
 
 
 //global variables
@@ -27,7 +27,7 @@ globalDispatch.on("change:county", (code, displayName) => {
   //pass the requested data by .then() to update view-modules together
   dataCombined.then(data => {
     const filteredData = data.filter(d => d.geoid_2 === countyCode);
-    console.log(filterData);
+    
 
     renderBarChart(filteredData); //will set up renderBarChart() later
   });
@@ -45,14 +45,7 @@ dataCombined.then(() =>
   ));
 
 //be careful about the countryMenuCode. Right now is undefined.
-dataCombined.then((countyMenuCode) => {
-  function geoDisplay (d){
-    
-    const geoDisplay = array.from(d.geoDisplay);
-    countyMenuCode = geoDisplay;
-    return countyMenuCode;
-  }
-  return renderMenu(countyMenuCode)}); 
+dataCombined.then(countyMenuCode => renderMenu(countyMenuCode)); 
 
 
 /*
@@ -61,12 +54,12 @@ Update view modules
 
 //Build title components 
 const title = d3.select('.county-view')
-                .insert('bar_chart') //remember to align with the div in index.html to make sure insert the right place
+                .insert('h1','bar_chart') 
                 .html('Counties');
 
 /*set up render function*/
 function renderBarChart(data) {
-  const maxValue = _; //leave it blank right now and to make a map to import earnings data
+  const maxValue = '_'; //leave it blank right now and to make a map to import earnings data
 
   const barChart = BarChart() //really careful about the uppercase and lowercase here
     .maxY(maxValue)
@@ -93,12 +86,16 @@ function renderBarChart(data) {
 }
 
 function renderMenu(countyMenuCode){
-  const countyList = Array.from(countyMenuCode.entries());
- 
+  dataCombined.then(data => {
+    console.log(data);
+    const countyMenuCode = data.map(d => [d.geoid_2, d.geography]);
+    console.log(countyMenuCode);
+  
 
+  
   let menu = d3.select('.nav')
                .selectAll('select')
-               .data([1]);
+               .data([0]);
 
   menu = menu.enter()
              .append('select')
@@ -119,4 +116,5 @@ function renderMenu(countyMenuCode){
     const display = this.options[idx].innerHTML;
     globalDispatch.call('change:country', null, code, display);
   });
+});
 }

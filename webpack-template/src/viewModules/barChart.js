@@ -4,7 +4,7 @@ import {
 } from '../data';
 
 //a barchart about age composition by county
-function barChart(){
+function BarChart(){
     let maxY;
     
 
@@ -70,4 +70,4 @@ function barChart(){
 
 
 
-export default barChart;
+export default BarChart;
