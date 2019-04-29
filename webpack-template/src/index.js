@@ -27,6 +27,8 @@ globalDispatch.on("change:county", (code, displayName) => {
   //pass the requested data by .then() to update view-modules together
   dataCombined.then(data => {
     const filteredData = data.filter(d => d.geoid_2 === countyCode);
+    console.log(filteredData);
+  
     
 
     renderBarChart(filteredData); //will set up renderBarChart() later
@@ -59,6 +61,7 @@ const title = d3.select('.county-view')
 
 /*set up render function*/
 function renderBarChart(data) {
+  dataCombined.then(data => {
   const maxValue = '_'; //leave it blank right now and to make a map to import earnings data
 
   const barChart = BarChart() //really careful about the uppercase and lowercase here
@@ -83,6 +86,7 @@ function renderBarChart(data) {
                 d.key
               );
           });   
+    });
 }
 
 function renderMenu(countyMenuCode){
